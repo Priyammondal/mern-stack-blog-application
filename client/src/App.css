@@ -1,0 +1,114 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  background-color: papayawhip;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: fit-content;
+  gap: 10px;
+  padding: 1rem;
+  border-radius: 5px;
+}
+form > section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+form > section > input {
+  padding: 5px 10px;
+}
+form > button {
+  cursor: pointer;
+}
+
+.article section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0;
+  color: white;
+}
+.article aside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  flex-direction: column;
+}
+.article aside div {
+  width: 94.3%;
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+.article aside div button {
+  padding: 0.375rem;
+}
+.each_articles {
+  height: 300px;
+  border: 1px solid;
+  width: 250px;
+  padding: 1rem;
+}
+
+body {
+  background-color: cadetblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body button {
+  cursor: pointer;
+  padding: 0.3rem 0.375rem;
+}
+
+.registration,
+.login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.article .create_article {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+.article .create_article .createArticleMain form {
+  position: relative;
+  padding: 2rem;
+}
+.article .create_article .createArticleMain form .close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+.article .create_article .createArticleMain section {
+  display: flex;
+  justify-content: space-between;
+  min-width: 400px;
+}
+.article .create_article .createArticleMain section label {
+  color: black;
+}
+.article .create_article .createArticleMain section input,
+.article .create_article .createArticleMain section textarea {
+  width: 85%;
+}
