@@ -22,8 +22,9 @@ mongoose
     console.log(`Database connection error: ${err.message}`);
     process.exit(1);
   });
+
 app.get("/", (req, res) => {
-  res.send("Helow World!");
+  res.send("This is a blog application. MERN + JWT authentication");
 });
 
 const checkEmailMiddleWare = async (req, res, next) => {
