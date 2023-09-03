@@ -102,13 +102,13 @@ body button {
 }
 .article .create_article .createArticleMain section {
   display: flex;
-  justify-content: space-between;
-  min-width: 400px;
+  justify-content: space-between !important;
+  min-width: 280px !important;
 }
 .article .create_article .createArticleMain section label {
   color: black;
 }
 .article .create_article .createArticleMain section input,
 .article .create_article .createArticleMain section textarea {
-  width: 85%;
+  width: 75%;
 }

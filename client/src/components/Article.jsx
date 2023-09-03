@@ -12,31 +12,62 @@ const Article = () => {
   const token = localStorage.getItem("token");
   const tokenType = localStorage.getItem("tokenType");
 
-  console.log("token-->", token);
-  console.log("tokenType-->", tokenType);
+  // console.log("token-->", token);
+  // console.log("tokenType-->", tokenType);
 
   useEffect(() => {
     getArticles();
   }, []);
 
   const getArticles = async () => {
-    const articleResponse = await axios.get(
-      `http://localhost:5050/getArticles/${userId}`
+    const articleResponse = axios.get(
+      `http://localhost:5050/getArticles/${userId}`,
+      {
+        headers: {
+          Authorization: `${tokenType} ${token}`,
+        },
+      }
     );
     console.log("articleResponse--->", articleResponse);
-    setArticles(articleResponse.data);
+    articleResponse
+      .then(({ data, status }) => {
+        console.log("data-->", data);
+        console.log("status-->", status);
+        if (status === 200) {
+          setArticles(data);
+          setTitle("");
+          setContent("");
+        }
+      })
+      .catch((err) => {
+        console.log("error-->", err);
+        navigate("/login");
+      });
   };
 
   const handleSubmitArticle = async (e) => {
     e.preventDefault();
-    const response = await axios.post("http://localhost:5050/createArtilcle", {
-      title: title,
-      content: content,
-      userId: userId,
-    });
+    const response = axios.post(
+      "http://localhost:5050/createArtilcle",
+      { title: title, content: content, userId: userId },
+      {
+        headers: {
+          Authorization: `${tokenType} ${token}`,
+        },
+      }
+    );
     console.log("response:", response);
-    setOpen(false);
-    getArticles();
+    response
+      .then(({ data, status }) => {
+        console.log("data-->", data);
+        console.log("status-->", status);
+        setOpen(false);
+        getArticles();
+      })
+      .catch((err) => {
+        console.log("error-->", err);
+        navigate("/login");
+      });
   };
   console.log("articles-->", articles);
   return (
@@ -53,11 +84,11 @@ const Article = () => {
         </h1>
         <div style={{ width: "95vw" }}>
           <button onClick={() => setOpen(true)}>Create Article</button>
-          <button onClick={() => navigate(-1)}>Logout</button>
+          <button onClick={() => navigate("/login")}>Logout</button>
         </div>
       </aside>
       <section>
-        {articles.map((item, index) => (
+        {articles?.map((item, index) => (
           <div className="each_articles" key={index}>
             <h3>{item.title}</h3>
             <p>{item.content}</p>
